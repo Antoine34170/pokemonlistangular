@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,6 +40,8 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation:false}),
+    CommonModule,
+		FormsModule,
     AppRoutingModule
   ],
   providers: [],
