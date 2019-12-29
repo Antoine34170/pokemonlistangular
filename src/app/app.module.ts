@@ -15,6 +15,8 @@ import { HeroSkillColorPipe } from './hero-skill-color.pipe';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroCardTypeBgPipe } from './hero-card-type-bg.pipe';
 import { PageNotFoundComponent } from './heroes/page-not-found.component';
+import { HeroEditComponent } from './hero-edit/hero-edit.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { PageNotFoundComponent } from './heroes/page-not-found.component';
     HeroSkillColorPipe,
     HeroDetailComponent,
     HeroCardTypeBgPipe,
-    PageNotFoundComponent,  
+    PageNotFoundComponent,
+    HeroEditComponent,
+    HeroFormComponent,  
   ],
   imports: [
     BrowserModule,
