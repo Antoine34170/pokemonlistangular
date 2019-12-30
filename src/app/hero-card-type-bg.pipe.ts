@@ -11,10 +11,10 @@ export class HeroCardTypeBgPipe implements PipeTransform {
    
     switch (types) {
       case 'Feu':
-        color = 'Feu';
+        color = '#f5120b';
         break;
       case 'Eau':
-        color = 'Eau';
+        color = '#f5120b';
         break;
       case 'Plante':
         color = 'Plante';
@@ -29,7 +29,7 @@ export class HeroCardTypeBgPipe implements PipeTransform {
         color = 'Normal';
         break;
       case 'Dragon':
-        color = 'Dragon';
+        color = '#f4681e';
         break;
       case 'Vol':
        color = 'Vol';
@@ -50,7 +50,7 @@ export class HeroCardTypeBgPipe implements PipeTransform {
         break;
       }
     
-      return 'color';
+      return color;
   
   
   }

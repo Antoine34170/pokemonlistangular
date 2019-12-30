@@ -9,7 +9,7 @@
                     <input type="text" class="form-control" id="name" required pattern="^[a-zA-Z0-9àéèç]{1,25}$"
                         [(ngModel)]="hero.name" name="name" #name="ngModel">
                     <div [hidden]="name.valid || name.pristine" class="card-panel red accent-1">
-                        Le nom du héros est requis (1-25).
+                        Veuillez entrer des caractères corrects
                     </div>
                 </div>
 
