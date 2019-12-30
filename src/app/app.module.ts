@@ -21,6 +21,7 @@ import { HeroCardTypeBgPipe } from './hero-card-type-bg.pipe';
 import { PageNotFoundComponent } from './heroes/page-not-found.component';
 import { HeroEditComponent } from './hero-edit/hero-edit.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     HeroCardTypeBgPipe,
     PageNotFoundComponent,
     HeroEditComponent,
-    HeroFormComponent,  
+    HeroFormComponent,
+    HeroSearchComponent,  
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,11 @@
+
+
 <h1 class='center'>Liste des Héros</h1>
 <div class='container'>
   <div class="row">
+
+    <hero-search></hero-search>
+    
     <div *ngFor='let hero of heroes' class="col s6 m4">
       <div class="card horizontal" heroBorderCard (click)="selectHero(hero)"
       [style.background]="'linear-gradient(0.40turn,'+hero.getCssClasses+')'">
