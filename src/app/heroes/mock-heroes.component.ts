@@ -14,6 +14,7 @@ export const HEROES: Hero[] = [
     new Hero(11, "Triopikeur", 92, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/051.png", ['Terre']),
     new Hero(12, "Xis", 60, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/048.png", ['Poison']),
     new Hero(13, "Lamantine", 92, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png", ['Eau','Glace']),
-    new Hero(14, "Tenefix", 85, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/302.png", ['Ténèbres','Spectre'])
+    new Hero(14, "Tenefix", 85, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/302.png", ['Ténèbres','Spectre']),
+    new Hero(15, "Issou", 85, "../../assets/perplexe.png", ['Ténèbres'])
     
 ];
