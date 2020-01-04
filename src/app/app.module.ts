@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
+
+
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -22,6 +24,7 @@ import { PageNotFoundComponent } from './heroes/page-not-found.component';
 import { HeroEditComponent } from './hero-edit/hero-edit.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { HeroCreateComponent } from './hero-create/hero-create.component';
 
 
 @NgModule({
@@ -33,18 +36,20 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     HeroSkillColorPipe,
     HeroDetailComponent,
     HeroCardTypeBgPipe,
-    PageNotFoundComponent,
     HeroEditComponent,
     HeroFormComponent,
-    HeroSearchComponent,  
+    HeroSearchComponent,
+    HeroCreateComponent,  
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation:false}),
     CommonModule,
-		FormsModule,
-    AppRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+		AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
