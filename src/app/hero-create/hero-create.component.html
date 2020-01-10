@@ -8,8 +8,8 @@
                 <div class="form-group">
                     <label>Id</label>
                     <input type="text" class="form-control" required pattern="^[0-9]{1,3}$"
-                        [formControl]="idForm" >
-                    Futur ID du Héros : {{ hero.id }} 
+                        [formControl]="idForm" [(ngModel)]="hero.id">
+                    Futur ID du Héros : {{ idForm.value }} 
 
 
                 </div>
@@ -19,7 +19,8 @@
                 <div class="form-group">
                     <label>Nom</label>
                     <input type="text" class="form-control" required pattern="^[a-zA-Z0-9àéèç]{1,25}$"
-                    [formControl]="nameForm">
+                    [formControl]="nameForm" [(ngModel)]="hero.name" >
+                    
                     Futur nom du Héros : {{ nameForm.value }}
                 </div>
 
@@ -27,17 +28,18 @@
                 <div class="form-group">
                     <label>Skill</label>
                     <input type="text" class="form-control" required pattern="^[0-9]{1,2}$"
-                        [formControl]="skillForm">
+                        [formControl]="skillForm" [(ngModel)]="hero.skill" >
                     Futur skill du Héros : {{ skillForm.value }}
                 </div>
 
                 <!-- Image -->
                 <div class="form-group">
                     <label>Image</label>
-                    <input type="text" class="form-control" required [formControl]="pictureForm">
+                    <input type="text" class="form-control" required
+                    [formControl]="pictureForm" [(ngModel)]="numHero">
                     Aperçu de l'image du héros :
                     <div class="card-image">
-                       <img [src]="pictureForm.value">{{pictureForm.value}} 
+                       <img [src]='"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+numHero+".png"'> 
                     </div>
 
 
@@ -50,7 +52,9 @@
                     <p *ngFor="let type of types">
                         <label>
                             <input type="checkbox" class="filled-in" id="{{ type }}" [value]="type"
-                            [checked]="hasType(type)" [disabled]="!isTypesValid(type)">
+                            [checked]="hasType(type)" 
+                            (change)="selectType($event, type)"
+                            [disabled]="!isTypesValid(type)">
                             <span [attr.for]="type">
                                 <div class="{{ type | heroTypeColor }}">
                                     {{ type }}

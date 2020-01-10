@@ -12,15 +12,17 @@ import { Hero } from '../heroes/heroes';
 })
 export class HeroCreateComponent implements OnInit {
 
-  hero = new Hero("16", "Pektoubi", '99', "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/600.png", ['Dragon','Spectre']);
+  private numHero = 0;
+  hero = new Hero("", "", "", "", []);
   heroes:Hero[];
   types:Array<String>;
+  
 
    
   idForm = new FormControl();
   nameForm = new FormControl('');
   skillForm = new FormControl('');
-  pictureForm = new FormControl('');
+  pictureForm = new FormControl('https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+numHero"+.png');
   typesForm = new FormControl('');
 
   constructor(
@@ -39,7 +41,8 @@ export class HeroCreateComponent implements OnInit {
     
     onSubmit(): void {
       console.log("envoi du formulaire");
-      console.log(this.hero.id +"name "+this.hero.name+"Skill "+this.hero.skill);
+      console.log("id : "+this.hero.id +"name : "+this.hero.name+" Skill : "+this.hero.skill+" Image : "+this.hero.picture);
+      this.hero.picture = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+this.numHero+".png"
       this.heroService.addHero(this.hero)
       .subscribe(hero => this.heroes.push(hero));
       this.goBack();
