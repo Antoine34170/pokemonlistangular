@@ -12,7 +12,7 @@ import { Hero } from '../heroes/heroes';
 })
 export class HeroCreateComponent implements OnInit {
 
-  private numHero = 0;
+  private numHero = this.heroService.getRandomInt();
   hero = new Hero("", "", "", "", []);
   heroes:Hero[];
   types:Array<String>;

@@ -58,8 +58,8 @@ export class HeroService {
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
-  
-    // Retourne tout les types possibles
+
+  // Retourne tout les types possibles
   getHeroTypes(): string[] {
     return ['Dragon', 'Plante', 'Feu', 'Eau', 'Glace', 'Insecte', 'Normal', 'Electrique',
       'Poison', 'Fée', 'Vol', 'Ténèbres', 'Spectre', 'Combat'];
@@ -76,7 +76,7 @@ export class HeroService {
       catchError(this.handleError<any>(`updatedHero`))
     );
   }
-  
+
   // Ajout Héros ----------
   addHero(hero: Hero): Observable<Hero> {
     const url = `${this.heroesUrl}/${hero.id}`;
@@ -102,6 +102,19 @@ export class HeroService {
       catchError(this.handleError<any>(`deleteHero`))
     )
   }
+  // Génération d'un nombre Alea
 
-
+  getRandomInt() {
+    var myNumberInt = Math.floor(Math.random() * 850);
+    var myNumber = myNumberInt.toString();
+    if (myNumber.length == 2) {
+      return "0" + myNumber.toString();
+    }
+    if (myNumber.length == 1) {
+      return "00"+ myNumber.toString();
+    } 
+    else {
+      return myNumber;
+  }
+}
 }

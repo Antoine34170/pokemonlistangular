@@ -12,5 +12,10 @@ app.get('/*', function(req,res) {
 res.sendFile(path.join(__dirname+'/dist/angular-reroll-test/index.html'));
 });
 
+app.post('/', function(request, response){
+    console.log(request.body);      // your JSON
+     response.send(request.body);    // echo the result back
+  });
+
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);

@@ -18,3 +18,4 @@ export const HEROES: Hero[] = [
     new Hero(15, "Issou", 85, "../../assets/perplexe.png", ['Ténèbres'])
     
 ];
+

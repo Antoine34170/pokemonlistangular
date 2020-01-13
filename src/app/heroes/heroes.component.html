@@ -6,14 +6,15 @@
   <a (click)="createHero()" class="waves-effect wave-light btn">Créer un héros</a> 
   <div class="row">
         <hero-search></hero-search>
-   
+        
     <div *ngFor='let hero of heroes' class="col s6 m4">
-      <div class="card horizontal" heroBorderCard (click)="selectHero(hero)">
+      
+      <div class="card horizontal" heroBorderCard (click)="selectHero(hero)"> 
         <div class="card-image">
           <img [src]="hero.picture">
         </div>
         <div class="card-stacked">
-          <div class="card-content">
+          <div class="card-content">  
             <p class="heroName">{{hero.id}} {{ hero.name | uppercase }} </p>Skill :
             <span class='{{hero.skill | heroSkillColor}}'> {{ hero.skill }}</span>
             <br>
