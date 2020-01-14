@@ -9,8 +9,8 @@
                 <div class="form-group">
                     <label>Id</label>
                     <input type="text" class="form-control" required pattern="^[0-9]{1,3}$"
-                        [formControl]="idForm" [(ngModel)]="hero.id">
-                    Futur ID du Héros : {{ idForm.value }}  {{correctHeroId}}
+                        [formControl]="idForm" [(ngModel)]="correctHeroId" [disabled]="isDisabled">
+                    Futur ID du Héros : {{ idForm.value }}  {{goodHeroId}}
 
 
                 </div>

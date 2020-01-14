@@ -12,16 +12,18 @@ import { Hero } from '../heroes/heroes';
 })
 export class HeroCreateComponent implements OnInit {
 
-  private numHero = this.heroService.getRandomInt();
-  private correctHeroId = this.heroService.getValidHeroId()
-  hero = new Hero("", "", "", "", []);
+  numHero = this.heroService.getRandomInt();
+  correctHeroId = this.heroService.getValidHeroId()
+  @Input() hero = new Hero("", "", "", "", []);
+  
+  
   public heroes: Hero[];
   types: Array<String>;
   
   
   
   
-  idForm = new FormControl();
+  idForm = new FormControl({value: this.correctHeroId, disabled: true});
   nameForm = new FormControl('');
   skillForm = new FormControl('');
   pictureForm = new FormControl('https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+numHero"+.png');
@@ -39,16 +41,12 @@ export class HeroCreateComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes);
       this.heroService.getValidHeroId();
       
-          
-    
-  }
+   }
   // Générer un nombre aléa alors de la création avec 3 caractères
   generateRandomNumber() {
     console.log("Random Number Fetched " +  this.numHero);
     this.numHero = this.heroService.getRandomInt();
     }
-
-   
 
   onSubmit(): void {
     this.hero.picture = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + this.numHero + ".png";
@@ -56,9 +54,7 @@ export class HeroCreateComponent implements OnInit {
     this.heroService.addHero(this.hero)
       .subscribe(hero => this.heroes.push(hero));
     this.goBack();
-   ;
-
-  }
+   }
 
   goBack(): void {
     let link = ['/heroes'];
@@ -91,6 +87,10 @@ export class HeroCreateComponent implements OnInit {
       return false;
     }
 
+    return true;
+  }
+
+  isDisabled():boolean {
     return true;
   }
 

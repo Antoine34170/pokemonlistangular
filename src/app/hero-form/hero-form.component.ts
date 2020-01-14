@@ -11,7 +11,7 @@ import { Hero } from '../heroes/heroes';
 })
 export class HeroFormComponent implements OnInit {
 
-  @Input() hero: Hero; // propriété d'entrée du composant
+	@Input() hero: Hero; // propriété d'entrée du composant
   types: Array<string>; // types disponibles pour un pokémon : 'Eau', 'Feu', etc ...
   
   constructor(
