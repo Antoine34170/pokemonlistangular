@@ -81,15 +81,26 @@ let heroes = [
     const url = `${this.apiUrl}/${pokemon.id}`;
 **/
 
-// Pokemon end points
+        // Pokemon end points
+
+// GET HEROES
 app.get('/api/heroes', function (request, response) {
   console.log("GET " + request.body);      // your JSON
   response.send(heroes);    // echo the result back
 });
 
-app.get('/api/heroes/1', function (request, response) {
-  console.log("GET " + request.body);      // your JSON
-  response.send(heroes[1-1]);    // echo the result back
+// GET HERO
+
+
+app.get('/api/heroes/:id([0-9]+)', function (request, response) {
+  for (let hero of heroes) {
+    if (hero.id == request.params.id) {
+      console.log(hero.id +" "+hero.name+" --  request.params.id "+ request.params.id);
+      response.send(hero);
+      return;
+    }
+  }
+  response.status(404).send("Help not found help plz");
 });
 
 app.post('/api/heroes', function (request, response) {
