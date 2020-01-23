@@ -8,7 +8,7 @@ const app = express();
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
+  extended: true
 }));
 
 // Serve only the static files form the dist directory
@@ -32,30 +32,30 @@ class Hero {
   types;
 
   constructor(id, name, skill, picture, types) {
-      this.id = id;
-      this.name = name;
-      this.skill = skill;
-      this.picture = picture;
-      this.types = types;
+    this.id = id;
+    this.name = name;
+    this.skill = skill;
+    this.picture = picture;
+    this.types = types;
   }
 }
 
 let heroes = [
-  new Hero(1, "Minou", 98, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/133.png", ['Fée']), 
-  new Hero(2, "Ger", 99, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/149.png", ['Dragon','Vol']),
+  new Hero(1, "Minou", 98, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/133.png", ['Fée']),
+  new Hero(2, "Ger", 99, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/149.png", ['Dragon', 'Vol']),
   new Hero(3, "K", 85, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png", ['Feu', 'Eau',]),
   new Hero(4, "Momo", 65, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/188.png", ['Plante', 'Poison']),
-  new Hero(5, "Aurel", 58, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/012.png", ['Insecte','Vol']),
+  new Hero(5, "Aurel", 58, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/012.png", ['Insecte', 'Vol']),
   new Hero(6, "Manu", 82, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/068.png", ['Combat']),
   new Hero(7, "Niko", 82, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/172.png", ['Electrique']),
   new Hero(8, "Max", 75, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/009.png", ['Eau']),
-  new Hero(9, "Adrix", 75, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/143.png", ['Normal']),
+  new Hero(23, "Adrix", 75, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/143.png", ['Normal']),
   new Hero(10, "Arturito", 92, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/075.png", ['Roche']),
   new Hero(11, "Triopikeur", 92, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/051.png", ['Terre']),
   new Hero(12, "Xis", 60, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/048.png", ['Poison']),
-  new Hero(13, "Lamantine", 92, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png", ['Eau','Glace']),
-  new Hero(16, "Tenefix", 85, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/302.png", ['Ténèbres','Spectre']),
-  new Hero(17, "Issou", 85, "../../assets/perplexe.png", ['Ténèbres'])  
+  new Hero(13, "Lamantine", 92, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png", ['Eau', 'Glace']),
+  new Hero(16, "Tenefix", 85, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/302.png", ['Ténèbres', 'Spectre']),
+  new Hero(17, "Issou", 85, "../../assets/perplexe.png", ['Ténèbres'])
 ];
 
 /**
@@ -63,7 +63,7 @@ let heroes = [
   return this.http.get<Pokemon[]>(`${this.apiUrl}/?name=${term}`).pipe(
 
   **/
-        // Pokemon end points
+// Pokemon end points
 
 // GET HEROES
 app.get('/api/heroes', function (request, response) {
@@ -76,7 +76,7 @@ app.get('/api/heroes', function (request, response) {
 app.get('/api/heroes/:id([0-9]+)', function (request, response) {
   for (let hero of heroes) {
     if (hero.id == request.params.id) {
-      console.log(hero.id +" "+hero.name+" --  request.params.id "+ request.params.id);
+      console.log(hero.id + " " + hero.name + " --  request.params.id " + request.params.id);
       response.send(hero);
       return;
     }
@@ -86,31 +86,29 @@ app.get('/api/heroes/:id([0-9]+)', function (request, response) {
 
 // AJOUT HERO
 app.post('/api/heroes', function (request, response) {
-  
-  //maybe miss something to say that the request body is json
+ 
   const nvHero = request.body;
-  console.log("request.body id : " + request.body.id);
-  console.log("request.body name : " + request.body.name);
-  console.log("request.body skill : " + request.body.skill);
-  console.log("request.body pictures : " + request.body.picture);
-  console.log("request.body types : " + request.body.types);
   heroes.push(nvHero);
-  
-  
+  response.send(heroes);
 });
 
 // SUPPRESSION HEROS
 app.delete('/api/heroes/:id([0-9]+)', function (request, response) {
-  for (let hero of heroes) {
-    if (hero.id == request.params.id) {
-      console.log(hero.id +" "+hero.name+" --  request.params.id "+ request.params.id);
-      response.send(hero);
-      return;
-    }
-  }
-  response.status(404).send("hero not found help plz");
   
-});
+  var IndexOfHeroToBeRemoved;
+
+    // On choppe l'index dans le tableau de heroes du héros a supprimer
+  for (let i=0; i < heroes.length; i++) {
+    if (request.params.id == heroes[i].id) {
+      IndexOfHeroToBeRemoved = i;
+    }   
+  }
+
+  // On supprime l'Hero avec un splice grâce à l'indice qu'on a récupéré
+  console.log("On va supprimer le heros d'indice " + IndexOfHeroToBeRemoved + " dans le tableau");
+  heroes.splice(IndexOfHeroToBeRemoved, 1);
+  response.send(heroes);
+  });
 
 
 // Start the app by listening on the default Heroku port
