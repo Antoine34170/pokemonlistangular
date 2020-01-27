@@ -2,6 +2,7 @@
   "name": "angular-reroll-test",
   "version": "0.0.0",
   "scripts": {
+    "jesuisunpgm": "echo trop un pgm",
     "start": "node server.js",
     "ng": "ng",
     "startDev": "ng serve",
@@ -28,6 +29,7 @@
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "path": "^0.12.7",
     "rxjs": "~6.4.0",

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Hero } from '../heroes/heroes';
 import { HeroService } from '../hero.service';
 import { HEROES } from '../heroes/mock-heroes.component';
+import { Server } from 'http';
 
 
 @Component({
@@ -45,8 +46,4 @@ export class HeroDetailComponent implements OnInit {
   
 
 }
-
-
-
-
 

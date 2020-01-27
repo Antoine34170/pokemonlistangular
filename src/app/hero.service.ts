@@ -15,7 +15,7 @@ export class HeroService {
 
   constructor(private http: HttpClient) { }
 
-  private heroesUrl = 'api/heroes';
+  private heroesUrl = 'http://localhost:8080/api/heroes';
   hero: Hero;
   heroes: Hero[];
 
@@ -46,7 +46,7 @@ export class HeroService {
 
   }
 
-  // Retourne un Héros
+  // Retourne un Héros BACKEND OK
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
@@ -55,7 +55,7 @@ export class HeroService {
     );
   }
 
-  // Retourne tout les Héros
+  // Retourne tout les Héros BACKEND OK
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
       tap(_ => this.log(`fetched heroes`)),
@@ -63,7 +63,7 @@ export class HeroService {
     );
   }
 
-  // Ajout Héros ----------
+  // Ajout Héros BACKEND OK
   addHero(hero: Hero): Observable<Hero> {
     const url = `${this.heroesUrl}/${hero.id}`;
     const httpOptions = {
@@ -76,7 +76,7 @@ export class HeroService {
     )
   }
 
-  // Suppression Héros
+  // BACKEND OK
   deleteHeroes(hero: Hero): Observable<Hero> {
     const url = `${this.heroesUrl}/${hero.id}`;
     const httpOptions = {
@@ -85,20 +85,22 @@ export class HeroService {
 
     return this.http.delete<Hero>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted hero id=${hero.id}`)),
-      catchError(this.handleError<any>(`deleteHero`))
+      catchError(this.handleError<any>(`deletedHero`))
     )
   }
 
   // Mise à jour Héros
   updateHero(hero: Hero): Observable<Hero> {
+    console.log("update hero " + JSON.stringify(hero));
+    const url = `${this.heroesUrl}/${hero.id}`;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
+    return this.http.put<Hero>(url, hero, httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id} ${url}`)),
       catchError(this.handleError<any>(`updatedHero`))
-    );
+    )
   }
 
   // Retourne tout les types possibles

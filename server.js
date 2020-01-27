@@ -4,6 +4,8 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -13,7 +15,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/angular-reroll-test'));
-
 
 // Serve angular app
 app.get('/', function (req, res) {
@@ -66,9 +67,29 @@ let heroes = [
 // Pokemon end points
 
 // GET HEROES
+
+
 app.get('/api/heroes', function (request, response) {
-  console.log("GET HEROES");      // your JSON
-  response.send(heroes);    // echo the result back
+
+  let searchedName = request.query.name;
+
+
+  if (searchedName) {
+    //name est défini, donc on filtre
+    //d'abord convertir toute ta liste de hero en lower case
+    
+
+
+    let filteredHeroes = heroes.filter(hero => hero.name.toLowerCase().includes(searchedName.toLowerCase()));
+    response.send(filteredHeroes);    // echo the result back
+
+    console.log("GET HEROES WITH NAME " + searchedName);      // your JSON
+  } else {
+    //name non defini, on retourne tous les heroes
+    response.send(heroes);    // echo the result back
+    console.log("GET HEROES");      // your JSON
+  }
+
 });
 
 
@@ -76,7 +97,6 @@ app.get('/api/heroes', function (request, response) {
 app.get('/api/heroes/:id([0-9]+)', function (request, response) {
   for (let hero of heroes) {
     if (hero.id == request.params.id) {
-      console.log(hero.id + " " + hero.name + " --  request.params.id " + request.params.id);
       response.send(hero);
       return;
     }
@@ -96,8 +116,7 @@ app.post('/api/heroes', function (request, response) {
 app.delete('/api/heroes/:id([0-9]+)', function (request, response) {
   
   var IndexOfHeroToBeRemoved;
-
-    // On choppe l'index dans le tableau de heroes du héros a supprimer
+  // On choppe l'index dans le tableau de heroes du héros a supprimer
   for (let i=0; i < heroes.length; i++) {
     if (request.params.id == heroes[i].id) {
       IndexOfHeroToBeRemoved = i;
@@ -110,6 +129,22 @@ app.delete('/api/heroes/:id([0-9]+)', function (request, response) {
   response.send(heroes);
   });
 
+  app.put('/api/heroes/:id([0-9]+)', function (request, response) {
+    let indexToBeModified;
+    const heroToModify = request.body;
+    console.log("request params id : "+ request.params.id);
+
+    //TODO save modifications in database
+    for (let i=0; i < heroes.length; i++) {
+      if (request.params.id == heroes[i].id) {
+        indexToBeModified = i;
+      }   
+    }
+    heroes[indexToBeModified] = request.body;
+
+    response.send(heroToModify);
+  
+  });
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
