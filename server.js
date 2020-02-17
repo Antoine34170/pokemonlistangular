@@ -70,10 +70,7 @@ let heroes = [
 
 
 // GET HEROES
-app.get('/api/heroes', function (request, response) {
-  console.log("GET HEROES");      // your JSON
-  response.send(heroes);    // echo the result back
-});
+
 
 //AUTO COMPLETiON SEARCH
 app.get('/api/heroes', function (request, response) {
