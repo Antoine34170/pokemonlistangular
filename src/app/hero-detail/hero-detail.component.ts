@@ -41,7 +41,5 @@ export class HeroDetailComponent implements OnInit {
 		let link = ['heroes/edit', hero.id];
 		this.routeur.navigate(link);
 	}
-  
 
 }
-

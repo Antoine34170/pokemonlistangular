@@ -48,6 +48,8 @@ export class HeroService {
 
   // Retourne un Héros BACKEND OK
   getHero(id: number): Observable<Hero> {
+
+    //arriver a lire le query param
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),

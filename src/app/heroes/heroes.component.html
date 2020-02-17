@@ -1,12 +1,18 @@
 
-
 <h1 class='center'>Liste des Héros</h1>
+
+
 
 <div class='container'>
   <a (click)="createHero()" class="waves-effect wave-light btn">Créer un héros</a> 
+  <a (click)="redirectToStats()" class="waves-effect wave-light btn">Statistiques</a> <br>
+  <a (click)="sortById()" class="waves-effect wave-light btn">Classement par ID</a> 
+  <a (click)="sortByName()" class="waves-effect wave-light btn">Classement par Nom</a>
   <div class="row">
         <hero-search></hero-search>
-        
+    
+       
+
     <div *ngFor='let hero of heroes' class="col s6 m4">
       
       <div class="card horizontal" heroBorderCard (click)="selectHero(hero)"> 
@@ -24,5 +30,13 @@
       </div>
 
     </div>
+
+  
+
+ 
+
+    
+    
+    
   </div>
 </div>

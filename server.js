@@ -1,17 +1,21 @@
-
-
 //Install express server
 const express = require('express');
 const path = require('path');
 const app = express();
 const cors = require('cors');
+//const db = require('./queries')
+
 app.use(cors());
+
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
 
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/angular-reroll-test'));
@@ -43,8 +47,8 @@ class Hero {
 
 let heroes = [
   new Hero(1, "Minou", 98, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/133.png", ['Fée']),
-  new Hero(2, "Ger", 99, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/149.png", ['Dragon', 'Vol']),
-  new Hero(3, "K", 85, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png", ['Feu', 'Eau',]),
+  new Hero(18, "Ger", 99, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/149.png", ['Dragon', 'Vol']),
+  new Hero(25, "K", 85, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png", ['Feu', 'Eau',]),
   new Hero(4, "Momo", 65, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/188.png", ['Plante', 'Poison']),
   new Hero(5, "Aurel", 58, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/012.png", ['Insecte', 'Vol']),
   new Hero(6, "Manu", 82, "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/068.png", ['Combat']),
@@ -59,16 +63,19 @@ let heroes = [
   new Hero(17, "Issou", 85, "../../assets/perplexe.png", ['Ténèbres'])
 ];
 
-/**
-  searchPokemons(term: string): Observable<Pokemon[]> {
-  return this.http.get<Pokemon[]>(`${this.apiUrl}/?name=${term}`).pipe(
+// Connextion à la BDD
 
-  **/
-// Pokemon end points
+
+
+
 
 // GET HEROES
+app.get('/api/heroes', function (request, response) {
+  console.log("GET HEROES");      // your JSON
+  response.send(heroes);    // echo the result back
+});
 
-
+//AUTO COMPLETiON SEARCH
 app.get('/api/heroes', function (request, response) {
 
   let searchedName = request.query.name;
@@ -129,6 +136,8 @@ app.delete('/api/heroes/:id([0-9]+)', function (request, response) {
   response.send(heroes);
   });
 
+  
+  //MISE A JOUR
   app.put('/api/heroes/:id([0-9]+)', function (request, response) {
     let indexToBeModified;
     const heroToModify = request.body;
@@ -146,5 +155,3 @@ app.delete('/api/heroes/:id([0-9]+)', function (request, response) {
   
   });
 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);

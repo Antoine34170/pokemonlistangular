@@ -22,6 +22,7 @@ import { HeroEditComponent } from './hero-edit/hero-edit.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroCreateComponent } from './hero-create/hero-create.component';
+import { HeroStatsComponent } from './hero-stats/hero-stats.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { HeroCreateComponent } from './hero-create/hero-create.component';
     HeroSearchComponent,
     HeroCreateComponent,  
     PageNotFoundComponent,
+    HeroStatsComponent,
   ],
   imports: [
     BrowserModule,
